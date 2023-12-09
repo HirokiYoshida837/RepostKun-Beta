@@ -9,7 +9,8 @@
     "allowSyntheticDefaultImports": true,
 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": false,
+    // TSyringe使うためには必須。
+    "emitDecoratorMetadata": true,
 
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
