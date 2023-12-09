@@ -1,7 +1,7 @@
 import type {ArgsOf} from "discordx";
 import {Discord,Guard, On} from "discordx";
 import {NotBot} from "@discordx/utilities";
-// import {CheckContentContainsTargetWord} from "./youtube-repost/libs/const.js";
+import {CheckContentContainsTargetWord} from "./youtube-repost/libs/const";
 
 @Discord()
 class Hello {
@@ -12,9 +12,9 @@ class Hello {
 
     console.log(`hello, ${message.content}`)
 
-    // if (CheckContentContainsTargetWord(message.content)) {
-    //   await message.reply("YouTubeのリンクやんけ！");
-    // }
+    if (CheckContentContainsTargetWord(message.content)) {
+      await message.reply("YouTubeのリンクやんけ！");
+    }
   }
 }
 
