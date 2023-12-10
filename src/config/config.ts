@@ -1,4 +1,4 @@
 
 export type Config = {
-  readonly name: string
+  readonly BOT_TOKEN?: string
 };

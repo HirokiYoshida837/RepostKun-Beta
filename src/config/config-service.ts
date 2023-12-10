@@ -3,15 +3,16 @@ import {singleton} from "tsyringe";
 import {Service} from "./service";
 import {Config} from "./config";
 
+import {config} from "dotenv";
+
 
 @singleton()
 export class ConfigService implements Service {
   private readonly _config: Config;
 
   constructor() {
-    this._config = {
-      name: "this is name!"
-    }
+    config();
+    this._config = ConfigService.parseConfig()
   }
 
   public init(): Promise<void> {
@@ -21,4 +22,12 @@ export class ConfigService implements Service {
   public get config(): Config {
     return this._config;
   }
+
+  private static parseConfig() : Config{
+    const conf: Config = {
+      BOT_TOKEN: process.env.BOT_TOKEN ?? ""
+    }
+    return conf
+  }
+
 }

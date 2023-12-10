@@ -1,16 +1,12 @@
 import "reflect-metadata";
 
+import {Client} from "discordx";
 import {dirname, importx} from "@discordx/importer";
 import type {Interaction, Message} from "discord.js";
 import {GatewayIntentBits} from "discord.js";
-import {Client, DIService, tsyringeDependencyRegistryEngine} from "discordx";
-
-import * as dotenv from 'dotenv'
-import { ConfigService } from "./config/config-service";
-import {container, injectable} from "tsyringe";
-import { Service } from "./config/service";
-
-dotenv.config()
+import {Service} from "config/service";
+import {ConfigService} from "config/config-service";
+import {injectable} from "tsyringe";
 
 @injectable()
 export class Bot {
@@ -65,11 +61,12 @@ export class Bot {
     // The following syntax should be used in the ECMAScript environment
     await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
 
-    if (!process.env.BOT_TOKEN) {
+
+    if (!this._configService.config.BOT_TOKEN) {
       throw Error("Could not find BOT_TOKEN in your environment");
     }
 
-    await this._client.login(process.env.BOT_TOKEN);
+    await this._client.login(this._configService.config.BOT_TOKEN)
   }
 
   public get client(): Client {
@@ -78,7 +75,3 @@ export class Bot {
 
 }
 
-// initialize TSyringe container
-DIService.engine = tsyringeDependencyRegistryEngine.setInjector(container);
-const bot = container.resolve(Bot);
-bot.bootstrap();
