@@ -7,6 +7,8 @@ on:
     tags:
       - v*
 
+env:
+  IMAGE_NAME: repostkun-beta
 
 jobs:
   # Push image to GitHub Packages.
@@ -32,9 +34,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            name/app
-            ghcr.io/username/app
-
+            ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 
       - name: Build and push
         uses: docker/build-push-action@v5
