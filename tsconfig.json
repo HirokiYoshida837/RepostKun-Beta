@@ -14,10 +14,6 @@
 
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
-    "paths": {
-      "config/*": ["src/config/*"]
-    }
   },
   "exclude": ["build", "node_modules"],
   "ts-node": {

@@ -4,8 +4,8 @@ import {Client} from "discordx";
 import {dirname, importx} from "@discordx/importer";
 import type {Interaction, Message} from "discord.js";
 import {GatewayIntentBits} from "discord.js";
-import {Service} from "config/service";
-import {ConfigService} from "config/config-service";
+import {Service} from "./config/service";
+import {ConfigService} from "./config/config-service";
 import {injectable} from "tsyringe";
 
 @injectable()

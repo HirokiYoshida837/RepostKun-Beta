@@ -8,7 +8,7 @@ import {injectable} from "tsyringe";
 
 import {CheckContentContainsTargetWord} from "./libs/const";
 import {ChannelType} from "discord.js";
-import {ConfigService} from "config/config-service";
+import {ConfigService} from "../../config/config-service";
 
 
 
@@ -42,6 +42,10 @@ class YoutubeRepostController {
         .first()
 
       if (!ch){
+        return
+      }
+
+      if (ch.id == message.channelId){
         return
       }
 
