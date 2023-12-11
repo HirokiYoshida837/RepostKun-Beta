@@ -18,7 +18,7 @@ import {ConfigService} from "../../config/config-service";
  */
 @Discord()
 @injectable()
-class YoutubeRepostController {
+export class YoutubeRepostController {
 
   constructor(
     private readonly _configService: ConfigService

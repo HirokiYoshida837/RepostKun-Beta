@@ -13,8 +13,9 @@
     "emitDecoratorMetadata": true,
 
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": true
   },
+  "include": ["src"],
   "exclude": ["build", "node_modules"],
   "ts-node": {
     "esm": true,

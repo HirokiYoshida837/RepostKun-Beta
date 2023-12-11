@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import {Client} from "discordx";
-import {dirname, importx} from "@discordx/importer";
+import {importx} from "@discordx/importer";
 import type {Interaction, Message} from "discord.js";
 import {GatewayIntentBits} from "discord.js";
 import {Service} from "./config/service";
@@ -63,7 +63,6 @@ export class Bot {
     // cjs
     await importx(__dirname + "/{events,commands}/**/*.{ts,js}");
 
-
     if (!this._configService.config.BOT_TOKEN) {
       throw Error("Could not find BOT_TOKEN in your environment");
     }
@@ -75,5 +74,9 @@ export class Bot {
     return this._client;
   }
 
+}
+
+function async() {
+    throw new Error("Function not implemented.");
 }
 
