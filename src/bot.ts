@@ -59,7 +59,9 @@ export class Bot {
     });
 
     // The following syntax should be used in the ECMAScript environment
-    await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
+    // await importx(`${dirname(import.meta.url)}/{events,commands}/**/*.{ts,js}`);
+    // cjs
+    await importx(__dirname + "/{events,commands}/**/*.{ts,js}");
 
 
     if (!this._configService.config.BOT_TOKEN) {
