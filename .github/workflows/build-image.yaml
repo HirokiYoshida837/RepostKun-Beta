@@ -7,34 +7,20 @@ on:
     tags:
       - v*
 
+env:
+  IMAGE_NAME: repostkun_beta
+
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  pipeline:
-    name: Skaffold Pipeline
-    runs-on: ubuntu-20.04
+  push:
+    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
 
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v3
-
-      # Install Skaffold
-      - name: Install Skaffold
-        run: |
-          curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && \
-          sudo install skaffold /usr/local/bin/
-          skaffold version
-
-      # Cache skaffold image builds & config
-      - name: Cache skaffold image builds & config
-        uses: actions/cache@v2
-        with:
-          path: ~/.skaffold/
-          key: fixed-${{ github.sha }}
-
+      - uses: actions/checkout@v3
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -43,7 +29,17 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Skaffold build pipeline as action
-        run: |
-          make build.dev
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ghcr.io/${{ github.repository_owner }}/repostkun_beta
 
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
