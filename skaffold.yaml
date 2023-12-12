@@ -23,5 +23,3 @@ profiles:
       push: true
     artifacts:
       - image: repostkun-beta
-    insecureRegistries:
-      - ghcr.io/hirokiyoshida837

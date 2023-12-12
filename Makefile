@@ -6,5 +6,6 @@ build.dev:
 .PHONY: build.prod
 build.prod:
 	skaffold build \
+	--default-repo ghcr.io/hirokiyoshida837 \
 	-p prod
 
