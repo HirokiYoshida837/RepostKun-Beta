@@ -13,7 +13,7 @@ env:
 jobs:
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
-  push:
+  build-and-push-docker-image:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -35,6 +35,9 @@ jobs:
         with:
           images: |
             ghcr.io/${{ github.repository_owner }}/repostkun_beta
+          tags: |
+            type=ref,event=branch
+            type=sha
 
       - name: Build and push
         uses: docker/build-push-action@v5
