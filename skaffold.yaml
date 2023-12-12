@@ -10,7 +10,7 @@ profiles:
       gitCommit:
         prefix: production-
     local: 
-      push: false
+      push: true
     artifacts:
       - image: repostkun-beta
 
@@ -20,6 +20,6 @@ profiles:
       gitCommit:
         prefix: develop-
     local: 
-      push: false
+      push: true
     artifacts:
       - image: repostkun-beta
