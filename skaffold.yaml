@@ -1,0 +1,25 @@
+---
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: repostkun-beta
+profiles:
+- name: production
+  build:
+    tagPolicy:
+      gitCommit:
+        prefix: production-
+    local: 
+      push: true
+    artifacts:
+      - image: repostkun-beta
+
+- name: develop
+  build:
+    tagPolicy:
+      gitCommit:
+        prefix: develop-
+    local: 
+      push: true
+    artifacts:
+      - image: repostkun-beta
