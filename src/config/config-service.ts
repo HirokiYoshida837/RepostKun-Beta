@@ -25,7 +25,8 @@ export class ConfigService implements Service {
 
   private static parseConfig() : Config{
     const conf: Config = {
-      BOT_TOKEN: process.env.BOT_TOKEN ?? ""
+      BOT_TOKEN: process.env.BOT_TOKEN ?? "",
+      TW_EXTRACT_URL: process.env.TW_EXTRACT_URL ?? "http://localhost:30030"
     }
     return conf
   }
