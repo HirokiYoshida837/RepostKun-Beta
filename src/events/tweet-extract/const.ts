@@ -1,7 +1,8 @@
 
 // FIXME : regex指定できた方がよさそう
 const checkStrings = [
-  'https://twitter.com/'
+  'https://twitter.com/',
+  'https://x.com/'
 ]
 
 export function isTwitterUrl(content: string): boolean {
@@ -30,21 +31,24 @@ export function getInfoFromUrl(url:string){
     userId,
     statusId
   }
-
-
-
 }
 
 const regexes = [
   /https?:\/\/twitter\.com\/(\w+)\/status(es)?\/(\d+)/,
   /https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(es)?\/(\d+)/,
   /https?:\/\/mobile\.twitter\.com\/(\w+)\/status(es)?\/(\d+)/,
+  /https?:\/\/x\.com\/(\w+)\/status(es)?\/(\d+)/,
+  /https?:\/\/x\.com\/(?:#!\/)?(\w+)\/status(es)?\/(\d+)/,
 ];
 
 const getStatusId = (urlStr: string) => {
   const url = new URL(urlStr);
 
   if (/(^|\.)twitter.com$/.test(url.host)) {
+    return url.pathname.match(/\/status(es)?\/(\d+)/)?.[2];
+  }
+
+  if (/(^|\.)x.com$/.test(url.host)) {
     return url.pathname.match(/\/status(es)?\/(\d+)/)?.[2];
   }
 
